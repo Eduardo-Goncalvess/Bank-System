@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>
+      Depósito
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="voltarMenu()" color="light">
+        Voltar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Realizar Depósito
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked">
+          Conta
+        </ion-label>
+        <ion-select [(ngModel)]="contaSelecionadaId">
+          <ion-select-option
+            *ngFor="let conta of contas"
+            [value]="conta.id">
+            {{ conta.numero }} - R$ {{ conta.saldo | number:'1.2-2' }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item class="ion-margin-top">
+        <ion-label position="stacked">
+          Valor
+        </ion-label>
+        <ion-input
+          type="number"
+          [(ngModel)]="valor">
+        </ion-input>
+      </ion-item>
+
+      <ion-button
+        expand="block"
+        color="danger"
+        class="ion-margin-top"
+        (click)="realizarDeposito()">
+        Depositar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,55 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title> Extrato </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="voltarMenu()" color="light">
+        Voltar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Selecionar Conta </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="stacked"> Conta </ion-label>
+
+        <ion-select
+          [(ngModel)]="contaSelecionadaId"
+          (ionChange)="carregarLancamentos()"
+        >
+          <ion-select-option *ngFor="let conta of contas" [value]="conta.id">
+            {{ conta.numero }} - R$ {{ conta.saldo | number:'1.2-2' }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngFor="let lancamento of lancamentos" class="ion-margin-top">
+    <ion-card-header>
+      <ion-card-title> {{ lancamento.tipo }} </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        <strong>Valor:</strong>
+        R$ {{ lancamento.valor | number:'1.2-2' }}
+      </p>
+
+      <p>
+        <strong>Data:</strong>
+        {{ lancamento.data | date:'dd/MM/yyyy HH:mm' }}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="lancamentos.length === 0" class="ion-text-center ion-margin-top">
+    <ion-text color="medium"> Nenhuma movimentação encontrada. </ion-text>
+  </div>
+</ion-content>

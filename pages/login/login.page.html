@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>OdinBank</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+  <div class="ion-text-center">
+    <img src="assets/icon/bank.jpg" class="logo">
+  </div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="autenticar()">
+
+    <ion-item>
+      <ion-label position="stacked" style="margin-bottom: 10px;"><h1>Matrícula</h1></ion-label>
+      <ion-input
+        type="text"
+        formControlName="matricula">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked" style="margin-bottom: 10px;"><h1>Senha</h1></ion-label>
+      <ion-input
+        type="password"
+        formControlName="senha">
+      </ion-input>
+    </ion-item>
+
+    <ion-button
+      type="submit"
+      expand="block"
+      color="danger"
+      [disabled]="!formGroup.valid">
+
+      Entrar
+
+    </ion-button>
+
+  </form>
+
+</ion-content>

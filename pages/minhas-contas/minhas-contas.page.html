@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title> Minhas Contas </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="voltarMenu()" color="light">
+        Voltar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-button expand="block" color="danger" (click)="cadastrarConta()">
+    Nova Conta
+  </ion-button>
+
+  <ion-card *ngFor="let conta of contas" class="ion-margin-top">
+    <ion-card-header>
+      <ion-card-title> Conta {{ conta.numero }} </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>
+        <strong>Saldo:</strong>
+
+        R$ {{ conta.saldo | number:'1.2-2' }}
+      </p>
+
+      <div class="ion-margin-top">
+        <ion-button
+          color="danger"
+          fill="outline"
+          size="small"
+          (click)="excluir(conta)"
+        >
+          Excluir
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <div *ngIf="contas.length === 0" class="ion-text-center ion-margin-top">
+    <p>Nenhuma conta cadastrada.</p>
+  </div>
+</ion-content>
